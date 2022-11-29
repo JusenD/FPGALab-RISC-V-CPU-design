@@ -23,6 +23,11 @@ module testdmem(
 
 	
 	reg [31:0] ram [32767:0];
+	
+	initial begin
+        $readmemh({"D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/rv32ui-p-lh_d.hex"},ram);
+    end
+	
 	always@(posedge rdclock)
 	begin
 	   if(wren)

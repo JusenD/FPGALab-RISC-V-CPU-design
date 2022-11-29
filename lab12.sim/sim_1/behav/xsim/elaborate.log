@@ -1,0 +1,27 @@
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot test_cpu_behav xil_defaultlib.test_cpu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-5021] port 'CLK_100MHZ' is not connected on this instance [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sim_1/new/test_cpu.v:32]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.GPRS
+Compiling module xil_defaultlib.pc_reg
+Compiling module xil_defaultlib.control
+Compiling module xil_defaultlib.Adder
+Compiling module xil_defaultlib.barrel
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.rv32is
+Compiling module xil_defaultlib.testmem
+Compiling module xil_defaultlib.testdmem
+Compiling module xil_defaultlib.dmem
+Compiling module xil_defaultlib.clkgen_default
+Compiling module xil_defaultlib.bcd7seg
+Compiling module xil_defaultlib.mainDesign
+Compiling module xil_defaultlib.test_cpu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot test_cpu_behav
