@@ -22,21 +22,25 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 1712
+INFO: [Synth 8-7075] Helper process launched with PID 20368
+WARNING: [Synth 8-6901] identifier 'h_valid' is used before its declaration [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/vga_ctrl.v:45]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1294.012 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1295.016 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'mainDesign' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:23]
+INFO: [Synth 8-6157] synthesizing module 'clkgen' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
+	Parameter clk_freq bound to: 25000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clkgen' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
 INFO: [Synth 8-6157] synthesizing module 'rv32is' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:23]
-INFO: [Synth 8-6157] synthesizing module 'GPRS' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:181]
-INFO: [Synth 8-6155] done synthesizing module 'GPRS' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:181]
+INFO: [Synth 8-6157] synthesizing module 'GPRS' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:180]
+INFO: [Synth 8-6155] done synthesizing module 'GPRS' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:180]
 INFO: [Synth 8-6157] synthesizing module 'pc_reg' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/pc.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'pc_reg' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/pc.v:23]
 INFO: [Synth 8-6157] synthesizing module 'control' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/control.v:23]
 INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/control.v:63]
 INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/control.v:166]
 INFO: [Synth 8-6155] done synthesizing module 'control' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/control.v:23]
-INFO: [Synth 8-155] case statement is not full and has no default [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:120]
+INFO: [Synth 8-155] case statement is not full and has no default [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:119]
 INFO: [Synth 8-6157] synthesizing module 'ALU' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Adder' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v:61]
 INFO: [Synth 8-6155] done synthesizing module 'Adder' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v:61]
@@ -45,22 +49,67 @@ INFO: [Synth 8-6155] done synthesizing module 'barrel' (0#1) [D:/Xilinx/Project/
 INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v:41]
 INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'rv32is' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:23]
+WARNING: [Synth 8-7071] port 'dbgdata' of module 'rv32is' is unconnected for instance 'mycpu' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:56]
+WARNING: [Synth 8-7023] instance 'mycpu' of module 'rv32is' has 13 connections declared, but only 12 given [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:56]
 INFO: [Synth 8-6157] synthesizing module 'testmem' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testmem.v:1]
-INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/rv32ui-p-lh.hex' is read successfully [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testmem.v:17]
+INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/main.hex' is read successfully [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testmem.v:17]
 INFO: [Synth 8-6155] done synthesizing module 'testmem' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testmem.v:1]
 INFO: [Synth 8-6157] synthesizing module 'dmem' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/dmem.v:1]
 INFO: [Synth 8-6157] synthesizing module 'testdmem' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testdmem.v:1]
-INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/rv32ui-p-lh_d.hex' is read successfully [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testdmem.v:28]
+INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/main_d.hex' is read successfully [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testdmem.v:28]
 INFO: [Synth 8-6155] done synthesizing module 'testdmem' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testdmem.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'dmem' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/dmem.v:1]
-INFO: [Synth 8-6157] synthesizing module 'clkgen' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.runs/synth_1/.Xil/Vivado-19212-Jusen/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.runs/synth_1/.Xil/Vivado-19212-Jusen/realtime/clk_wiz_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'locked' of module 'clk_wiz_0' is unconnected for instance 'myvgaclk' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:96]
+WARNING: [Synth 8-7023] instance 'myvgaclk' of module 'clk_wiz_0' has 4 connections declared, but only 3 given [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:96]
+INFO: [Synth 8-6157] synthesizing module 'text_mem' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.runs/synth_1/.Xil/Vivado-19212-Jusen/realtime/text_mem_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'text_mem' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.runs/synth_1/.Xil/Vivado-19212-Jusen/realtime/text_mem_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'ascii2rgb' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/ascii2rgb.v:23]
+INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/vga_font.txt' is read successfully [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/ascii2rgb.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'ascii2rgb' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/ascii2rgb.v:23]
+INFO: [Synth 8-6157] synthesizing module 'vga_ctrl' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/vga_ctrl.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'vga_ctrl' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/vga_ctrl.v:23]
+WARNING: [Synth 8-7071] port 'valid' of module 'vga_ctrl' is unconnected for instance 'm3' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:104]
+WARNING: [Synth 8-7023] instance 'm3' of module 'vga_ctrl' has 15 connections declared, but only 14 given [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:104]
+INFO: [Synth 8-6157] synthesizing module 'clkgen__parameterized0' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
+	Parameter clk_freq bound to: 10000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clkgen__parameterized0' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
+INFO: [Synth 8-6157] synthesizing module 'keyboard' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:23]
+INFO: [Synth 8-6157] synthesizing module 'scancode_ram' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:23]
+INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab07/scancode.txt' is read successfully [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'scancode_ram' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:23]
+INFO: [Synth 8-6157] synthesizing module 'shift_ram' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:32]
+INFO: [Synth 8-3876] $readmem data file 'D:/Xilinx/Project/lab07/shift.txt' is read successfully [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'shift_ram' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v:32]
+INFO: [Synth 8-6157] synthesizing module 'ps2_keyboard' [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:135]
+INFO: [Synth 8-6155] done synthesizing module 'ps2_keyboard' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:135]
+INFO: [Synth 8-6155] done synthesizing module 'keyboard' (0#1) [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:23]
+WARNING: [Synth 8-7071] port 'ready' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7071] port 'overflow' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7071] port 'sampling' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7071] port 'rel' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7071] port 'shift' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7071] port 'caps' of module 'keyboard' is unconnected for instance 'mykeyboard' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+WARNING: [Synth 8-7023] instance 'mykeyboard' of module 'keyboard' has 13 connections declared, but only 7 given [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:119]
+INFO: [Synth 8-6157] synthesizing module 'clkgen__parameterized1' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
 	Parameter clk_freq bound to: 1000 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'clkgen' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
-INFO: [Synth 8-6157] synthesizing module 'bcd7seg' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:205]
-INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:210]
-INFO: [Synth 8-6155] done synthesizing module 'bcd7seg' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:205]
-INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:94]
+INFO: [Synth 8-6155] done synthesizing module 'clkgen__parameterized1' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v:23]
+INFO: [Synth 8-6157] synthesizing module 'bcd7seg' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:204]
+INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:209]
+INFO: [Synth 8-6155] done synthesizing module 'bcd7seg' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:204]
+INFO: [Synth 8-226] default block is never used [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:159]
 INFO: [Synth 8-6155] done synthesizing module 'mainDesign' (0#1) [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:23]
+WARNING: [Synth 8-6014] Unused sequential element key_count_reg was removed.  [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:74]
+WARNING: [Synth 8-6014] Unused sequential element no_press_reg was removed.  [D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v:88]
+WARNING: [Synth 8-7137] Register tail_reg in module mainDesign has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v:112]
+WARNING: [Synth 8-7137] Register FIFO_reg in module mainDesign has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'FIFO_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+RAM "FIFO_reg" dissolved into registers
+WARNING: [Synth 8-7129] Port clk in module shift_ram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port clk in module scancode_ram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[31] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[30] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[29] in module dmem is either unconnected or has no load
@@ -111,55 +160,67 @@ WARNING: [Synth 8-7129] Port data[0] in module testmem is either unconnected or 
 WARNING: [Synth 8-7129] Port wren in module testmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port imemdataout[1] in module rv32is is either unconnected or has no load
 WARNING: [Synth 8-7129] Port imemdataout[0] in module rv32is is either unconnected or has no load
+WARNING: [Synth 8-7129] Port clk in module mainDesign is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1303.676 ; gain = 9.664
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1317.418 ; gain = 22.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1303.676 ; gain = 9.664
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1317.418 ; gain = 22.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1303.676 ; gain = 9.664
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1317.418 ; gain = 22.402
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1303.676 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1317.418 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
+Parsing XDC File [d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.gen/sources_1/ip/text_mem/text_mem/text_mem_in_context.xdc] for cell 'text'
+Finished Parsing XDC File [d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.gen/sources_1/ip/text_mem/text_mem/text_mem_in_context.xdc] for cell 'text'
+Parsing XDC File [d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'myvgaclk'
+Finished Parsing XDC File [d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'myvgaclk'
 Parsing XDC File [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/nexysa7.xdc]
+WARNING: [Vivado 12-507] No nets matched 'clk'. [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/nexysa7.xdc:83]
 Finished Parsing XDC File [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/nexysa7.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/nexysa7.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/mainDesign_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/nexysa7.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/mainDesign_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/mainDesign_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1369.805 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1396.523 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1369.805 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1396.523 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'text' at clock pin 'clkb' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for text. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for myvgaclk. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'ALUB_reg' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:121]
+WARNING: [Synth 8-327] inferring latch for variable 'ALUB_reg' [D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v:120]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -168,44 +229,66 @@ Detailed RTL Component Info :
 +---Adders : 
 	   3 Input   33 Bit       Adders := 1     
 	   2 Input   32 Bit       Adders := 1     
-	   2 Input    3 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 4     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 2     
+	   2 Input    3 Bit       Adders := 3     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 3     
 	   2 Input      1 Bit         XORs := 2     
++---XORs : 
+	                9 Bit    Wide XORs := 1     
 +---Registers : 
 	               32 Bit    Registers := 4     
-	                3 Bit    Registers := 1     
-	                1 Bit    Registers := 1     
+	               10 Bit    Registers := 3     
+	                8 Bit    Registers := 34    
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 13    
 +---RAMs : 
 	            1024K Bit	(32768 X 32 bit)          RAMs := 1     
+	               64 Bit	(8 X 8 bit)          RAMs := 1     
++---ROMs : 
+	                    ROMs := 1     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 5     
+	   2 Input   32 Bit        Muxes := 6     
 	   4 Input   32 Bit        Muxes := 6     
 	  11 Input   32 Bit        Muxes := 1     
-	 194 Input   32 Bit        Muxes := 1     
-	   3 Input   32 Bit        Muxes := 1     
+	   3 Input   32 Bit        Muxes := 2     
 	   2 Input   16 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 7     
+	   2 Input   10 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 9     
+	 257 Input    8 Bit        Muxes := 2     
+	   5 Input    8 Bit        Muxes := 1     
 	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 2     
 	   8 Input    4 Bit        Muxes := 1     
 	   9 Input    4 Bit        Muxes := 1     
 	   7 Input    4 Bit        Muxes := 1     
 	  10 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 7     
 	   4 Input    4 Bit        Muxes := 1     
 	  10 Input    3 Bit        Muxes := 1     
 	  16 Input    3 Bit        Muxes := 1     
 	   6 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
 	   7 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 2     
 	   4 Input    2 Bit        Muxes := 2     
 	  10 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 58    
 	   6 Input    1 Bit        Muxes := 1     
 	  10 Input    1 Bit        Muxes := 4     
-	   2 Input    1 Bit        Muxes := 6     
-	   4 Input    1 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 3     
 	  11 Input    1 Bit        Muxes := 2     
 	   8 Input    1 Bit        Muxes := 2     
+	   5 Input    1 Bit        Muxes := 2     
+	   3 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -222,6 +305,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+Why this net has no driver: _order_recur <const0>
 WARNING: [Synth 8-7129] Port addr[31] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[30] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[29] in module dmem is either unconnected or has no load
@@ -237,64 +321,73 @@ WARNING: [Synth 8-7129] Port addr[20] in module dmem is either unconnected or ha
 WARNING: [Synth 8-7129] Port addr[19] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[18] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[17] in module dmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[15] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[14] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[13] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[12] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[11] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[10] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[9] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port address[8] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[31] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[30] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[29] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[28] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[27] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[26] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[25] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[24] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[23] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[22] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[21] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[20] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[19] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[18] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[17] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[16] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[15] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[14] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[13] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[12] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[11] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[10] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[9] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[8] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[7] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[6] in module testmem is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data[5] in module testmem is either unconnected or has no load
-INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-7129] Port imemdataout[1] in module rv32is is either unconnected or has no load
+WARNING: [Synth 8-7129] Port imemdataout[0] in module rv32is is either unconnected or has no load
+WARNING: [Synth 8-7129] Port clk in module mainDesign is either unconnected or has no load
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[31]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[30]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[29]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[28]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[27]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[26]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[25]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[24]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[23]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[22]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[21]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[20]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[19]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[18]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[17]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[16]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[15]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[14]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[13]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[12]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[11]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[10]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[9]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[8]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[7]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[6]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[5]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[4]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[3]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[2]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[1]) is unused and will be removed from module rv32is.
+WARNING: [Synth 8-3332] Sequential element (ALUB_reg[0]) is unused and will be removed from module rv32is.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
+ROM: Preliminary Mapping Report
++------------+--------------------+---------------+----------------+
+|Module Name | RTL Object         | Depth x Width | Implemented As | 
++------------+--------------------+---------------+----------------+
+|ascii2rgb   | myfont             | 4096x10       | LUT            | 
+|mainDesign  | instructions/q_reg | 512x32        | Block RAM      | 
++------------+--------------------+---------------+----------------+
+
+
 Block RAM: Preliminary Mapping Report (see note below)
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name | RTL Object            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|mainDesign  | datamem/mymem/ram_reg | 32 K x 32(NO_CHANGE)   | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|datamem     | mymem/ram_reg | 32 K x 32(NO_CHANGE)   | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+------------+--------------------------+-----------+----------------------+--------------+
-|Module Name | RTL Object               | Inference | Size (Depth x Width) | Primitives   | 
-+------------+--------------------------+-----------+----------------------+--------------+
-|mainDesign  | mycpu/myregfile/regs_reg | Implied   | 32 x 32              | RAM32M x 12  | 
-+------------+--------------------------+-----------+----------------------+--------------+
++------------+--------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object         | Inference | Size (Depth x Width) | Primitives   | 
++------------+--------------------+-----------+----------------------+--------------+
+|mycpu       | myregfile/regs_reg | Implied   | 32 x 32              | RAM32M x 12  | 
+|mykeyboard  | mykey/fifo_reg     | Implied   | 8 x 8                | RAM32M x 2   | 
++------------+--------------------+-----------+----------------------+--------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 ---------------------------------------------------------------------------------
@@ -304,32 +397,33 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Timing Optimization : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1398.047 ; gain = 103.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Block RAM: Final Mapping Report
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name | RTL Object            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|mainDesign  | datamem/mymem/ram_reg | 32 K x 32(NO_CHANGE)   | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
-+------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|datamem     | mymem/ram_reg | 32 K x 32(NO_CHANGE)   | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
 Distributed RAM: Final Mapping Report
-+------------+--------------------------+-----------+----------------------+--------------+
-|Module Name | RTL Object               | Inference | Size (Depth x Width) | Primitives   | 
-+------------+--------------------------+-----------+----------------------+--------------+
-|mainDesign  | mycpu/myregfile/regs_reg | Implied   | 32 x 32              | RAM32M x 12  | 
-+------------+--------------------------+-----------+----------------------+--------------+
++------------+--------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object         | Inference | Size (Depth x Width) | Primitives   | 
++------------+--------------------+-----------+----------------------+--------------+
+|mycpu       | myregfile/regs_reg | Implied   | 32 x 32              | RAM32M x 12  | 
+|mykeyboard  | mykey/fifo_reg     | Implied   | 8 x 8                | RAM32M x 2   | 
++------------+--------------------+-----------+----------------------+--------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -369,8 +463,10 @@ INFO: [Synth 8-7052] The timing for the instance datamem/mymem/ram_reg_0_28 (imp
 INFO: [Synth 8-7052] The timing for the instance datamem/mymem/ram_reg_0_29 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance datamem/mymem/ram_reg_0_30 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance datamem/mymem/ram_reg_0_31 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance instructions/q_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance instructions/q_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1414.453 ; gain = 119.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -388,95 +484,105 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished IO Insertion : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.207 ; gain = 134.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.207 ; gain = 134.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.207 ; gain = 134.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.207 ; gain = 134.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.215 ; gain = 134.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 1429.215 ; gain = 134.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+-+--------------+----------+
-| |BlackBox name |Instances |
-+-+--------------+----------+
-+-+--------------+----------+
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
+|2     |text_mem      |         1|
++------+--------------+----------+
 
 Report Cell Usage: 
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |BUFG     |     3|
-|2     |CARRY4   |    25|
-|3     |LUT1     |     4|
-|4     |LUT2     |    70|
-|5     |LUT3     |    84|
-|6     |LUT4     |   157|
-|7     |LUT5     |   304|
-|8     |LUT6     |   342|
-|9     |MUXF7    |    70|
-|10    |MUXF8    |    19|
-|11    |RAM32M   |    10|
-|12    |RAM32X1D |     4|
-|13    |RAMB36E1 |    32|
-|17    |FDCE     |    32|
-|18    |FDRE     |    65|
-|19    |LD       |    32|
-|20    |IBUF     |     3|
-|21    |OBUF     |    16|
+|1     |clk_wiz  |     1|
+|2     |text_mem |     1|
+|3     |BUFG     |     2|
+|4     |CARRY4   |    41|
+|5     |LUT1     |    11|
+|6     |LUT2     |   100|
+|7     |LUT3     |   188|
+|8     |LUT4     |   182|
+|9     |LUT5     |   377|
+|10    |LUT6     |  1006|
+|11    |MUXF7    |   249|
+|12    |MUXF8    |    68|
+|13    |RAM32M   |    11|
+|14    |RAM32X1D |     6|
+|15    |RAMB18E1 |     1|
+|16    |RAMB36E1 |    32|
+|27    |FDCE     |    46|
+|28    |FDPE     |     6|
+|29    |FDRE     |   397|
+|30    |FDSE     |     1|
+|31    |LDC      |     5|
+|32    |IBUF     |     3|
+|33    |OBUF     |    30|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1429.215 ; gain = 134.199
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 60 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:37 . Memory (MB): peak = 1369.805 ; gain = 9.664
-Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1369.805 ; gain = 75.793
+Synthesis finished with 0 errors, 0 critical warnings and 52 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:00:44 . Memory (MB): peak = 1429.215 ; gain = 53.570
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1429.215 ; gain = 134.199
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1376.836 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 192 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 1441.289 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 413 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 46 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1380.496 ; gain = 0.000
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 48 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1444.941 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 46 instances were transformed.
-  LD => LDCE: 32 instances
+  A total of 22 instances were transformed.
+  LDC => LDCE: 5 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 1 instance 
   RAM32M => RAM32M (inverted pins: WCLK) (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
   RAM32X1D => RAM32X1D (inverted pins: WCLK) (RAMD32(x2)): 4 instances
 
-Synth Design complete, checksum: 7d53f408
+Synth Design complete, checksum: 24850aa1
 INFO: [Common 17-83] Releasing license: Synthesis
-88 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
+113 Infos, 127 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1380.496 ; gain = 86.484
+synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 1444.941 ; gain = 149.926
 INFO: [Common 17-1381] The checkpoint 'D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.runs/synth_1/mainDesign.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file mainDesign_utilization_synth.rpt -pb mainDesign_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Nov 29 23:30:03 2022...
+INFO: [Common 17-206] Exiting Vivado at Thu Dec  1 21:50:50 2022...

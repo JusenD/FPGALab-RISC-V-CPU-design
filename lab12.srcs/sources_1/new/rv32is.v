@@ -54,7 +54,6 @@ module rv32is(
     wire [2:0]ExtOP;
     wire RegWr;
     wire [2:0]Branch;
-    wire MemtoReg;
     wire MemWr;
     wire [2:0]MemOP;
     wire ALUAsrc;
@@ -167,7 +166,7 @@ module rv32is(
     assign NextPC = reset ? 0 : PCA+PCB;
     
     // memory
-    assign dmemaddr = {12'h001, Result[19:0]};
+    assign dmemaddr = Result;
     assign dmemop = MemOP;
     assign dmemdatain = busB;
     assign dmemwe = MemWr;

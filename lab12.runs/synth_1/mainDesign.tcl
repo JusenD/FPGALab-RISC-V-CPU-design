@@ -78,8 +78,10 @@ create_project -in_memory -part xc7a100tcsg324-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.cache/wt [current_project]
 set_property parent.project_path D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.xpr [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
@@ -89,15 +91,27 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/ALU.v
+  D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/ascii2rgb.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/clkgen.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/control.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/dmem.v
+  D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/keyboard.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/pc.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/rv32is.v
+  D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/scancode_ram.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testdmem.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/testmem.v
+  D:/Xilinx/Project/lab12/lab12.srcs/sources_1/new/vga_ctrl.v
   D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/new/mainDesign.v
 }
+read_ip -quiet D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/ip/text_mem/text_mem.xci
+set_property used_in_implementation false [get_files -all d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.gen/sources_1/ip/text_mem/text_mem_ooc.xdc]
+
+read_ip -quiet D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
