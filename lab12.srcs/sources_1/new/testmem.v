@@ -14,7 +14,7 @@ module testmem(
 	reg [31:0] ram [65535:0];
 	
 	initial begin
-        $readmemh("D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/main.hex",ram);
+        $readmemh("D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/software/main.hex",ram);
     end
 	
 	always@(posedge clock)

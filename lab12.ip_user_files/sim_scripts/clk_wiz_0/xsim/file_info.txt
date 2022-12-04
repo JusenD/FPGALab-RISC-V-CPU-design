@@ -1,2 +1,0 @@
-clk_wiz_0_sim_netlist.v,verilog,xil_defaultlib,d:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab08.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v,incdir="../../../../lab08.gen/sources_1/ip/clk_wiz_0"
-glbl.v,Verilog,xil_defaultlib,glbl.v

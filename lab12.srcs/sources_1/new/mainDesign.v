@@ -33,7 +33,7 @@ module mainDesign(
     output VGA_VS,
     output reg[7:0]AN,
     output reg[7:0]HEX
-    
+    //output [31:0]dbgout
     );
     wire [31:0]dbgout;
     // CPU declaration
@@ -44,7 +44,7 @@ module mainDesign(
     wire [31:0] daddr,ddataout,ddatain;
     wire [31:0] ddata;
     wire datawe;
-    wire drdclk, dwrclk, dwe;
+    wire drdclk, dwrclk, dwe, drd;
     wire [2:0]  dop;
     wire [31:0] cpudbgdata = ddatain;
     reg [31:0] keymemout;
@@ -56,7 +56,7 @@ module mainDesign(
     rv32is mycpu(.clock(CLK_25MHZ), 
                  .reset(reset), 
                  .imemaddr(iaddr), .imemdataout(idataout), .imemclk(iclk), 
-                 .dmemaddr(daddr), .dmemdataout(ddata), .dmemdatain(ddatain), .dmemrdclk(drdclk), .dmemwrclk(dwrclk), .dmemop(dop), .dmemwe(dwe)
+                 .dmemaddr(daddr), .dmemdataout(ddata), .dmemdatain(ddatain), .dmemrdclk(drdclk), .dmemwrclk(dwrclk), .dmemop(dop), .dmemwe(dwe), .MemtoReg(drd)
                 /* .dbgdata(cpudbgdata)*/);
     
                       
@@ -70,11 +70,13 @@ module mainDesign(
         
     
     //data memory	
+    //assign datawe = dwe;
+    //assign ddata = ddataout;
     assign datawe = daddr[31:20] == 12'h001 & dwe;
     assign ddata = (daddr[31:20] == 12'h001) ? ddataout :
                     ((daddr[31:20] == 12'h003) ? keymemout : 32'b0);
     
-    dmem datamem(.addr(daddr), 
+    datamem dMem(.addr(daddr), 
                  .dataout(ddataout), 
                  .datain(ddatain), 
                  .rdclk(drdclk), 
@@ -89,17 +91,17 @@ module mainDesign(
     wire [9:0] h_addr;
     wire [9:0] v_addr;
     wire [6:0]ascii_h;
-    wire [4:0]ascii_v;
-    wire [11:0]text_read_addr = {ascii_v, ascii_h};
+    wire [6:0]ascii_v;
+    wire [13:0]text_read_addr = {{ascii_v + offline[6:0]}, ascii_h};
     wire [3:0]font_h;
     wire [3:0]font_v;
     clk_wiz_0 myvgaclk(.clk_in1(CLK100MHZ), .reset(reset), .clk_out1(VGA_clk));
     //clkgen #(25000000) VGACLK(CLK100MHZ, 1'b0, 1'b1, VGA_clk);
     
-    text_mem text(.addra(daddr[11:0]), .clka(~CLK_25MHZ), .dina(ddatain[7:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h002)),
+    text_mem text(.addra(daddr[13:0]), .clka(~CLK_25MHZ), .dina(ddatain[7:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h002)),
                   .addrb(text_read_addr), .clkb(CLK100MHZ), .doutb(ascii_data), .enb(1'b1));
 
-    ascii2rgb m2(.clk(VGA_clk), .ascii_data(ascii_data), .font_h(font_h), .font_v(font_v), .rgb_data(rgb_data));
+    ascii2rgb m2(.clk(VGA_clk), .ascii_data(ascii_data), .font_h(font_h), .font_v(font_v), .rgb_data(rgb_data), .cursor(cursor == text_read_addr));
 
     vga_ctrl m3(.pclk(VGA_clk), .reset(reset), .vga_data(rgb_data), .h_addr(h_addr), .v_addr(v_addr), .vga_r(VGA_R), .vga_g(VGA_G), .vga_b(VGA_B),
              .hsync(VGA_HS), .vsync(VGA_VS), .ascii_h(ascii_h), .ascii_v(ascii_v), .font_h(font_h), .font_v(font_v));
@@ -123,21 +125,27 @@ module mainDesign(
             tail <= head;
         end
         else if(~new_key)begin
-            if(~FIFO_overflow) begin
-                FIFO[tail] <= key;
-                tail <= tail+1;
-            end
+            FIFO[tail] <= key;
+            tail <= tail+1;
         end
     end
     // CPU read
     always @ (posedge CLK_25MHZ)begin
-        if(daddr[31:20] == 12'h003 && ~FIFO_overflow && dwe && ~FIFO_empty) begin
+        if(daddr[31:20] == 12'h003 && ~FIFO_overflow && drd && ~FIFO_empty) begin
             keymemout = {24'b0 ,FIFO[head]};
             head <= head+1;
         end
         else keymemout = 0;
     end
-      
+    reg [31:0]cursor = 0, offline = 0;
+    wire write_cursor = dwe & daddr == 32'h002FFFFF;
+    wire write_offline = dwe & daddr == 32'h002FFFFE;
+    always @ (posedge ~CLK_25MHZ)begin
+        if(write_cursor) cursor <= ddatain;
+        else if(write_offline ) offline <= ddatain;
+    end
+
+    
         
     //display debugdata
     wire display_clk;

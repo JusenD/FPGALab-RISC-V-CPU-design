@@ -158,9 +158,9 @@ task checkmagnum;
 endtask
 
 task loaddatamem;
-    begin
-	     $readmemh({"D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/",testcase, "_d.hex"},try.datamem.mymem.ram);
-	 end
+//    begin
+//	     $readmemh({"D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/",testcase, "_d.hex"},try.datamem.mymem.ram);
+//	 end
 endtask
 
 task run_riscv_test;
@@ -177,25 +177,25 @@ endtask
 initial begin:TestBench
       #80
       // output the state of every instruction
-        testcase = "rv32ui-p-simple";
-		run_riscv_test();
-         reset = 1'b1; #20;
-         reset = 1'b0; #20;
-         model.kbd_sendcode(8'h1C); // press 'A'
-         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1;//read data
-         model.kbd_sendcode(8'hF0); // break code
-         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1; //read data
-         model.kbd_sendcode(8'h1C); // release 'A'
-         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1; //read data
-         model.kbd_sendcode(8'h1B); // press 'S'
-         #20 model.kbd_sendcode(8'h1B); // keep pressing 'S'
-         #20 model.kbd_sendcode(8'h1B); // keep pressing 'S'
-         model.kbd_sendcode(8'hF0); // break code
-         model.kbd_sendcode(8'h1B); // release 'S'
-         #20;
-		testcase = "rv32ui-p-main";
-		run_riscv_test();
-		testcase = "rv32ui-p-addi";
+//        testcase = "rv32ui-p-simple";
+//		run_riscv_test();
+//         reset = 1'b1; #20;
+//         reset = 1'b0; #20;
+//         model.kbd_sendcode(8'h1C); // press 'A'
+//         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1;//read data
+//         model.kbd_sendcode(8'hF0); // break code
+//         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1; //read data
+//         model.kbd_sendcode(8'h1C); // release 'A'
+//         #20 nextdata_n =1'b0; #20 nextdata_n =1'b1; //read data
+//         model.kbd_sendcode(8'h1B); // press 'S'
+//         #20 model.kbd_sendcode(8'h1B); // keep pressing 'S'
+//         #20 model.kbd_sendcode(8'h1B); // keep pressing 'S'
+//         model.kbd_sendcode(8'hF0); // break code
+//         model.kbd_sendcode(8'h1B); // release 'S'
+//         #20;
+//		testcase = "main";
+//		run_riscv_test();
+//		testcase = "rv32ui-p-addi";
 //		run_riscv_test();
 //		testcase = "rv32ui-p-and";
 //		run_riscv_test();
@@ -237,36 +237,36 @@ initial begin:TestBench
 //		run_riscv_test();
 //		testcase = "rv32ui-p-sb";
 //		run_riscv_test();
-//		testcase = "rv32ui-p-sh";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sll";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-slli";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-slt";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-slti";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sltiu";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sltu";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sra";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-srai";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-srl";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-srli";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sub";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-sw";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-xor";
-//		run_riscv_test();
-//		testcase = "rv32ui-p-xori";
-//		run_riscv_test();	
+		testcase = "rv32ui-p-sh";
+		run_riscv_test();
+		testcase = "rv32ui-p-sll";
+		run_riscv_test();
+		testcase = "rv32ui-p-slli";
+		run_riscv_test();
+		testcase = "rv32ui-p-slt";
+		run_riscv_test();
+		testcase = "rv32ui-p-slti";
+		run_riscv_test();
+		testcase = "rv32ui-p-sltiu";
+		run_riscv_test();
+		testcase = "rv32ui-p-sltu";
+		run_riscv_test();
+		testcase = "rv32ui-p-sra";
+		run_riscv_test();
+		testcase = "rv32ui-p-srai";
+		run_riscv_test();
+		testcase = "rv32ui-p-srl";
+		run_riscv_test();
+		testcase = "rv32ui-p-srli";
+		run_riscv_test();
+		testcase = "rv32ui-p-sub";
+		run_riscv_test();
+		testcase = "rv32ui-p-sw";
+		run_riscv_test();
+		testcase = "rv32ui-p-xor";
+		run_riscv_test();
+		testcase = "rv32ui-p-xori";
+		run_riscv_test();	
 		$stop;
 end		
 

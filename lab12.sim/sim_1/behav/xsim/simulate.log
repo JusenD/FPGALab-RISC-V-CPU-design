@@ -1,8 +1,0 @@
-Time resolution is 1 ps
-Block Memory Generator module test_cpu.try.text.inst.\native_mem_module.blk_mem_gen_v8_4_5_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
-~~~ Begin test case rv32ui-p-simple ~~~
-~~~ OK:test case rv32ui-p-simple finshed OK at cycle  32.
-Stopped at time : 6265 ns : File "D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sim_1/new/test_cpu.v" Line 196
-~~~ Begin test case   rv32ui-p-main ~~~
-~~~ Error:test case   rv32ui-p-main does not terminate!
-Stopped at time : 206290 ns : File "D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/lab12.srcs/sim_1/new/test_cpu.v" Line 198

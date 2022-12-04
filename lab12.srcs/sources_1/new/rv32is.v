@@ -33,8 +33,8 @@ module rv32is(
 	output	dmemwrclk,
 	output [2:0] dmemop,
 	output	dmemwe,
+	output MemtoReg,
 	output [31:0] dbgdata);
-//add your code here
     
     wire [31:0]PC;
     wire [31:0]NextPC;
