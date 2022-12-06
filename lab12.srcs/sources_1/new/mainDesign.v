@@ -46,18 +46,18 @@ module mainDesign(
     wire datawe;
     wire drdclk, dwrclk, dwe, drd;
     wire [2:0]  dop;
-    wire [31:0] cpudbgdata = ddatain;
-    reg [31:0] keymemout;
+    wire [31:0] cpudbgdata = {11'b0, head, 11'b0, tail};
+    wire [31:0] keymemout;
     assign dbgout = idataout;
-    wire CLK_25MHZ;
+    wire CLK_25MHZ/* = clk*/;
     clkgen #(25000000) CLK(CLK100MHZ, 1'b0, 1'b1, CLK_25MHZ);
     
     //main CPU
-    rv32is mycpu(.clock(CLK_25MHZ), 
+    pipeline_rv32is mycpu(.clock(CLK_25MHZ), 
                  .reset(reset), 
                  .imemaddr(iaddr), .imemdataout(idataout), .imemclk(iclk), 
                  .dmemaddr(daddr), .dmemdataout(ddata), .dmemdatain(ddatain), .dmemrdclk(drdclk), .dmemwrclk(dwrclk), .dmemop(dop), .dmemwe(dwe), .MemtoReg(drd)
-                /* .dbgdata(cpudbgdata)*/);
+                 /*,.dbgdata(cpudbgdata)*/);
     
                       
     //instruction memory, no writing
@@ -70,8 +70,8 @@ module mainDesign(
         
     
     //data memory	
-    //assign datawe = dwe;
-    //assign ddata = ddataout;
+//    assign datawe = dwe;
+//    assign ddata = ddataout;
     assign datawe = daddr[31:20] == 12'h001 & dwe;
     assign ddata = (daddr[31:20] == 12'h001) ? ddataout :
                     ((daddr[31:20] == 12'h003) ? keymemout : 32'b0);
@@ -130,12 +130,11 @@ module mainDesign(
         end
     end
     // CPU read
+    assign keymemout = (~FIFO_overflow && ~FIFO_empty) ? {24'b0 ,FIFO[head]} : 0;
     always @ (posedge CLK_25MHZ)begin
         if(daddr[31:20] == 12'h003 && ~FIFO_overflow && drd && ~FIFO_empty) begin
-            keymemout = {24'b0 ,FIFO[head]};
             head <= head+1;
         end
-        else keymemout = 0;
     end
     reg [31:0]cursor = 0, offline = 0;
     wire write_cursor = dwe & daddr == 32'h002FFFFF;

@@ -108,7 +108,8 @@ endtask
 
 task loadtestcase;  //load intstructions to instruction mem
 	begin
-		$readmemh({"D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/",testcase, ".hex"},try.instructions.ram);
+		//$readmemh({"D:/Xilinx/Project/lab11/lab11.sim/sim_1/behav/sim/",testcase, ".hex"},try.instructions.ram);
+		$readmemh("D:/Xilinx/Project/lab12/FPGALab-RISC-V-CPU-design/software/main.hex",try.instructions.ram);
 		$display("~~~ Begin test case %s ~~~", testcase);
 	end
 endtask
@@ -128,11 +129,25 @@ task run;
    integer i;
 	begin
 	   i = 0;
-	   while((idataout!=32'hdead10cc) && (i<maxcycles))
+	   step();
+       step();
+       step();
+       step();
+	   while(/*(idataout!=32'hdead10cc) && */(i<maxcycles))
 		begin
 		   step();
 			i=i+1;
 		end
+	   if(try.mycpu.level2.cnt != 3) begin
+           step();
+           step();
+           step();
+	   end
+	   step();
+       step();
+       step();
+       step();
+
 	end
 endtask
 
@@ -193,7 +208,7 @@ initial begin:TestBench
 //         model.kbd_sendcode(8'hF0); // break code
 //         model.kbd_sendcode(8'h1B); // release 'S'
 //         #20;
-//		testcase = "main";
+//		testcase = "rv32ui-p-add";
 //		run_riscv_test();
 //		testcase = "rv32ui-p-addi";
 //		run_riscv_test();
@@ -237,8 +252,8 @@ initial begin:TestBench
 //		run_riscv_test();
 //		testcase = "rv32ui-p-sb";
 //		run_riscv_test();
-		testcase = "rv32ui-p-sh";
-		run_riscv_test();
+//		testcase = "rv32ui-p-sh";
+//		run_riscv_test();
 		testcase = "rv32ui-p-sll";
 		run_riscv_test();
 		testcase = "rv32ui-p-slli";
