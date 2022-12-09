@@ -24,16 +24,17 @@ module mainDesign(
     wire datawe;
     wire drdclk, dwrclk, dwe, drd;
     wire [2:0]  dop;
-    wire [31:0] cpudbgdata = {11'b0, head, 11'b0, tail};
+    reg [31:0] cpudbgdata = 0;
     wire [31:0] keymemout;
     assign dbgout = idataout;
     wire CLK_25MHZ/* = clk*/;
     wire CLK_50MHZ;
     clkgen #(25000000) CLK(CLK100MHZ, 1'b0, 1'b1, CLK_25MHZ);
     clkgen #(50000000) CLK_2(CLK100MHZ, 1'b0, 1'b1, CLK_50MHZ);
+    wire CPU_CLOK = CLK_50MHZ;
     
     //main CPU
-    pipeline_rv32is mycpu(.clock(CLK_50MHZ), 
+    pipeline_rv32is mycpu(.clock(CPU_CLOK), 
                  .reset(reset), 
                  .imemaddr(iaddr), .imemdataout(idataout), .imemclk(iclk), 
                  .dmemaddr(daddr), .dmemdataout(ddata), .dmemdatain(ddatain), .dmemrdclk(drdclk), .dmemwrclk(dwrclk), .dmemop(dop), .dmemwe(dwe), .MemtoReg(drd)
@@ -80,10 +81,10 @@ module mainDesign(
     clk_wiz_0 myvgaclk(.clk_in1(CLK100MHZ), .reset(reset), .clk_out1(VGA_clk));
     //clkgen #(25000000) VGACLK(CLK100MHZ, 1'b0, 1'b1, VGA_clk);
     
-    text_mem text(.addra(daddr[13:0]), .clka(~CLK_50MHZ), .dina(ddatain[7:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h002)),
+    text_mem text(.addra(daddr[13:0]), .clka(~CPU_CLOK), .dina(ddatain[7:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h002)),
                   .addrb(text_read_addr), .clkb(CLK100MHZ), .doutb(ascii_data), .enb(1'b1));
     
-    color color_mem(.addra(daddr[13:0]), .clka(~CLK_50MHZ), .dina(ddatain[2:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h005)),
+    color color_mem(.addra(daddr[13:0]), .clka(~CPU_CLOK), .dina(ddatain[2:0]), .ena(1'b1), .wea(dwe & (daddr[31:20] == 12'h005)),
                   .addrb(text_read_addr), .clkb(CLK100MHZ), .doutb(color_data), .enb(1'b1));              
 
     ascii2rgb m2(.clk(VGA_clk), .ascii_data(ascii_data), .color_data(color_data), .font_h(font_h), .font_v(font_v), .rgb_data(rgb_data), .cursor(cursor == text_read_addr));
@@ -106,7 +107,7 @@ module mainDesign(
     keyboard mykeyboard(.ps2_clk(PS2_CLK), .ps2_data(PS2_DATA), .CLK_10MHZ(key_clk), .clrn(~reset), .key(key), .ctrl(ctrl), .new_key(new_key));
     // keyboad write
     reg [2:0] que;
-    always @ (negedge CLK_50MHZ)begin
+    always @ (negedge CPU_CLOK)begin
         que <= {key_clk, que[2:1]};
         if(reset)begin
             tail <= head;
@@ -118,7 +119,7 @@ module mainDesign(
     end
     // CPU read
     assign keymemout = (~FIFO_overflow && ~FIFO_empty) ? {24'b0 ,FIFO[head]} : 0;
-    always @ (posedge CLK_50MHZ)begin
+    always @ (posedge CPU_CLOK)begin
         if(daddr[31:20] == 12'h003 && ~FIFO_overflow && drd && ~FIFO_empty) begin
             head <= head+1;
         end
@@ -126,7 +127,7 @@ module mainDesign(
     reg [31:0]cursor = 0, offline = 0;
     wire write_cursor = dwe & daddr == 32'h002FFFFF;
     wire write_offline = dwe & daddr == 32'h002FFFFE;
-    always @ (posedge ~CLK_50MHZ)begin
+    always @ (posedge ~CPU_CLOK)begin
         if(write_cursor) cursor <= ddatain;
         else if(write_offline ) offline <= ddatain;
     end
@@ -139,6 +140,16 @@ module mainDesign(
         run_time <= run_time + 1;
     end
         
+    // LED 
+    // CPU write only 
+    always @ (posedge CPU_CLOK)begin
+        if(dwe & (daddr[31:20] == 12'h006))begin 
+            if(daddr[1:0] == 0) cpudbgdata[15:0] <= ddatain[15:0];
+            else if(daddr[1:0] == 1) cpudbgdata[31:16] <= ddatain[31:16];
+            else if(daddr[1:0] == 2) cpudbgdata <= ddatain;
+        end
+    end
+    
     //display debugdata
     wire display_clk;
     clkgen #(1000) DISPLAY_CLK (CLK100MHZ, 1'b0, 1'b1, display_clk);
