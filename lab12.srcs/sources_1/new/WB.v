@@ -15,10 +15,10 @@ module WB(
     output [18:0]WB_control,
     output WB_valid
     );
-    assign WB_valid = MEM_valid;
     assign WB_rd = MEM_rd;
     assign WB_regwritedata = MEM_busW;
     assign WB_control = MEM_control;
+    assign WB_valid = MEM_valid;
 /*    always @ (negedge clk) begin
         if(reset)begin
             WB_rd <= 0;

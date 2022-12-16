@@ -214,15 +214,15 @@ Disassembly of section .text:
      310:	fca42e23          	sw	a0,-36(s0)
      314:	fdc42783          	lw	a5,-36(s0)
      318:	0007a783          	lw	a5,0(a5)
-     31c:	02079263          	bnez	a5,340 <display+0x40>
+     31c:	02078263          	beqz	a5,340 <display+0x40>
      320:	fdc42783          	lw	a5,-36(s0)
      324:	00478793          	addi	a5,a5,4
      328:	0007a783          	lw	a5,0(a5)
-     32c:	00079a63          	bnez	a5,340 <display+0x40>
+     32c:	00078a63          	beqz	a5,340 <display+0x40>
      330:	fdc42783          	lw	a5,-36(s0)
      334:	00878793          	addi	a5,a5,8
      338:	0007a783          	lw	a5,0(a5)
-     33c:	00079a63          	bnez	a5,350 <display+0x50>
+     33c:	00078a63          	beqz	a5,350 <display+0x50>
      340:	00100517          	auipc	a0,0x100
      344:	d1c50513          	addi	a0,a0,-740 # 10005c <error>
      348:	7a1000ef          	jal	ra,12e8 <putstr>

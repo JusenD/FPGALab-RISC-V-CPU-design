@@ -8,8 +8,10 @@ module ID(
     input [31:0]instruction,
     input [31:0]rega,
     input [31:0]regb,
-    input [31:0]IF_PC,
+    input [31:0]IF_PC_buffer,
+    input [31:0]IF_pre_PC_buffer,
     input reset,
+    input [4:0]EX_rd,
     input [4:0]MEM_rd,
     input [31:0]EX_Result,
     input [31:0]MEM_Result,
@@ -24,11 +26,14 @@ module ID(
     output reg[31:0]busA,
     output reg[31:0]busB,
     output reg[31:0]ID_PC,
+    output reg[31:0]ID_pre_PC,
     output reg bubble,
     output reg ID_valid
     );
     reg [31:0] last_instr;
-    wire [31:0]instr = reset ? 0 : ((former | bubble) ? last_instr : instruction);
+    reg [31:0] last_PC;
+    reg [31:0] last_pre_PC;
+    wire [31:0]instr = reset ? 0 : (bubble ? last_instr : instruction);
     reg load, former;
     reg [4:0]load_reg;
     wire [18:0]EX_control = control_signal;
@@ -37,7 +42,6 @@ module ID(
     assign rs1 = instr[19:15];
     assign rs2 = instr[24:20];
     wire [4:0]rd = instr[11:7];
-    wire [4:0]EX_rd = ID_rd;
     wire [2:0]func3 = instr[14:12];
     wire [6:0]func7 = instr[31:25];
     
@@ -63,18 +67,28 @@ module ID(
     wire [18:0] control_buffer;
     control CONTROL(op[6:2], func3, func7[5], control_buffer[`ExtOP], control_buffer[`RegWr], control_buffer[`Branch], control_buffer[`MemtoReg], control_buffer[`MemWr], control_buffer[`MemOP], control_buffer[`ALUAsrc], control_buffer[`ALUBsrc], control_buffer[`ALUctr]);
     
-    always @ (posedge clk)begin 
+    reg [31:0]IF_PC;
+    reg [31:0]IF_pre_PC;
+    always @ (posedge clk) begin
+        IF_PC <= IF_PC_buffer;
+        IF_pre_PC <= IF_pre_PC_buffer;
+    end
+    
+    always @ (negedge clk)begin 
         if(reset)begin
             control_signal <= 0;
             ID_rd <= 0;
             busA <= 0;
             busB <= 0;
             ID_PC <= 0;
+            ID_pre_PC <= 4;
             bubble <= 0;
             load <= 0;
             last_instr <= 0;
+            last_PC <= 0;
+            last_pre_PC <= 4;
             former <= 0;
-            ID_valid <= 0;
+            ID_valid <= 1;
         end
         else if(bubble) begin
             former <= 1;
@@ -86,42 +100,48 @@ module ID(
             load <= ((op[6:2] == 0) && (instr != 32'b0));
             load_reg <= rd;
             last_instr <= instruction;
-            ID_PC <= ID_PC + 4;
+            last_PC <= IF_PC;
+            last_pre_PC <= IF_pre_PC;
+            ID_PC <= last_PC;
+            ID_pre_PC <= last_pre_PC;
             // rs1 hazard
-            if(EX_valid && rs1 == MEM_rd && MEM_control[`RegWr])begin
+            if(MEM_valid && rs1 == MEM_rd && MEM_control[`RegWr])begin
                 busA <= rs1 == 0 ? 0 : MEM_Result;
             end
             else busA <= rega;
             // rs2 hazard 
-            if(EX_valid && rs2 == MEM_rd && MEM_control[`RegWr])begin
+            if(MEM_valid && rs2 == MEM_rd && MEM_control[`RegWr])begin
                 busB <= rs2 == 0 ? 0 : MEM_Result;
             end
             else busB <= regb;
         end
         else begin
-            if(~(load && (rs1 == load_reg || rs2 == load_reg) && EX_control[`RegWr])) ID_PC <= IF_PC;
+            ID_PC <= IF_PC;
+            ID_pre_PC <= IF_pre_PC;
             control_signal <= control_buffer;
             ID_rd <= rd;
             ID_imm <= imm;
             load <= op[6:2] == 0 && (instr != 32'b0);
             load_reg <= rd;
             last_instr <= instr;
+            last_PC <= IF_PC;
+            last_pre_PC <= IF_pre_PC;
             // load-use
             ID_valid <= ~(load && (rs1 == load_reg || rs2 == load_reg) && EX_control[`RegWr]);
             bubble <= (load && (rs1 == load_reg || rs2 == load_reg) && EX_control[`RegWr]);
             // rs1 hazard
-            if(ID_valid && rs1 == EX_rd && EX_control[`RegWr])begin
+            if(EX_valid && rs1 == EX_rd && EX_control[`RegWr])begin
                 busA <= rs1 == 0 ? 0 : EX_Result;
             end
-            else if(EX_valid && rs1 == MEM_rd && MEM_control[`RegWr])begin
+            else if(MEM_valid && rs1 == MEM_rd && MEM_control[`RegWr])begin
                 busA <= rs1 == 0 ? 0 : MEM_Result;
             end
             else busA <= rega;
             // rs2 hazard 
-            if(ID_valid && rs2 == EX_rd && EX_control[`RegWr])begin
+            if(EX_valid && rs2 == EX_rd && EX_control[`RegWr])begin
                     busB <= rs2 == 0 ? 0 : EX_Result;
             end
-            else if(EX_valid && rs2 == MEM_rd && MEM_control[`RegWr])begin
+            else if(MEM_valid && rs2 == MEM_rd && MEM_control[`RegWr])begin
                 busB <= rs2 == 0 ? 0 : MEM_Result;
             end
             else busB <= regb;

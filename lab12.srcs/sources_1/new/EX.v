@@ -10,6 +10,7 @@ module EX(
     input [31:0]ID_busB,
     input [18:0]ID_control,
     input [31:0]ID_PC,
+    input [31:0]ID_pre_PC,
     input [4:0]ID_rd,
     input [31:0]ID_imm,
     input reset,
@@ -18,6 +19,8 @@ module EX(
     output [31:0]Result,
     output reg[31:0]EX_Result,
     output reg[31:0]EX_nextPC,
+    output reg[31:0]EX_PC,
+    output reg[31:0]EX_former_PC,
     output reg[18:0]EX_control,
     output reg[31:0]EX_busB,
     output reg[4:0]EX_rd,
@@ -25,8 +28,8 @@ module EX(
     output reg EX_valid
     );
     
-    reg [31:0]EX_PC;
-    wire [31:0]PC = EX_PC;
+    wire [31:0]PC = ID_PC;
+    reg[31:0]EX_pre_PC;
     wire [31:0]busA = ID_busA, busB = ID_busB, imm = ID_imm;
     wire[31:0] NextPC, PCA, PCB;
     wire Less, Zero;
@@ -84,24 +87,23 @@ module EX(
     assign PCB = PCBsrc ? busA : PC;
     assign NextPC = reset ? 0 : PCA+PCB;
     reg [1:0]cnt = 1;
-    reg check;
     always @ (posedge clk) begin
-        if(bubble) check <= 0;
-        if(check == 0) check <= 1;
         if(reset)begin
             EX_Result <= 0;
             EX_PC <= 0;
+            EX_pre_PC <= 4;
             EX_nextPC <= 0;
             EX_control <= 0;
             EX_busB <= 0;
             EX_rd <= 0;
             pre_fail <= 0;
             cnt <= 1;
-            check <= 1;
+            EX_valid <= 1;
         end
-        else if(cnt != 3)begin
+        else if(cnt != 2)begin
             pre_fail <= 0;
             EX_PC <= ID_PC;
+            EX_pre_PC <= ID_pre_PC;
             cnt <= cnt + 1;
         end
         else if(~ID_valid)begin
@@ -112,17 +114,18 @@ module EX(
             else cnt <= cnt+1;
         end*/
         else begin
-            check <= 1;
             EX_valid <= 1;
             EX_Result <= Result;
             EX_PC <= ID_PC;
+            EX_pre_PC <= ID_pre_PC;
             EX_nextPC <= NextPC;
             EX_control <= ID_control;
             EX_busB <= busB;
             EX_rd <= ID_rd;
-            pre_fail <= NextPC != EX_PC + 4;
-            cnt <= (NextPC != EX_PC + 4) ? 0 : 3;
+            pre_fail <= NextPC != ID_pre_PC ? 1 : 0;
+            cnt <= NextPC != ID_pre_PC ? 0 : 2;
         end
+        //if(~ID_valid) EX_valid <= 0;
     end
     
 endmodule

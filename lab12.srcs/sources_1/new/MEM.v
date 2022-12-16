@@ -41,6 +41,7 @@ module MEM(
             MEM_control <= EX_control;
             MEM_rd <= EX_rd;
         end
+        //if(~EX_valid) MEM_valid <= 0;
     end
     
 endmodule

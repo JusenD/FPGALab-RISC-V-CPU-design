@@ -27,7 +27,7 @@ module mainDesign(
     reg [31:0] cpudbgdata = 0;
     wire [31:0] keymemout;
     assign dbgout = idataout;
-    wire CLK_25MHZ/* = clk*/;
+    wire CLK_25MHZ;
     wire CLK_50MHZ;
     clkgen #(25000000) CLK(CLK100MHZ, 1'b0, 1'b1, CLK_25MHZ);
     clkgen #(50000000) CLK_2(CLK100MHZ, 1'b0, 1'b1, CLK_50MHZ);
@@ -105,6 +105,7 @@ module mainDesign(
     wire key_clk;
     clkgen #(10000000) KEYCLK(CLK100MHZ, 1'b0, 1'b1, key_clk);
     keyboard mykeyboard(.ps2_clk(PS2_CLK), .ps2_data(PS2_DATA), .CLK_10MHZ(key_clk), .clrn(~reset), .key(key), .ctrl(ctrl), .new_key(new_key));
+    
     // keyboad write
     reg [2:0] que;
     always @ (negedge CPU_CLOK)begin
