@@ -25,7 +25,7 @@ module mainDesign(
     wire drdclk, dwrclk, dwe, drd;
     wire [2:0]  dop;
     reg [31:0] cpudbgdata = 0;
-    wire [31:0] keymemout;
+    reg [31:0] keymemout;
     assign dbgout = idataout;
     wire CLK_25MHZ;
     wire CLK_50MHZ;
@@ -107,22 +107,33 @@ module mainDesign(
     keyboard mykeyboard(.ps2_clk(PS2_CLK), .ps2_data(PS2_DATA), .CLK_10MHZ(key_clk), .clrn(~reset), .key(key), .ctrl(ctrl), .new_key(new_key));
     
     // keyboad write
-    reg [2:0] que;
-    always @ (negedge CPU_CLOK)begin
-        que <= {key_clk, que[2:1]};
+    reg delay = 0;
+    always @ (posedge key_clk)begin
         if(reset)begin
             tail <= head;
         end
-        else if(que[2] && ~que[1] && ~new_key)begin
-            FIFO[tail] <= key;
-            tail <= tail+1;
+        else begin
+            if(~new_key)begin
+                delay <= 1;
+            end
+            if(delay)begin
+                delay <= 0;
+                FIFO[tail] <= key;
+                tail <= tail+1;
+            end
         end
     end
     // CPU read
-    assign keymemout = (~FIFO_overflow && ~FIFO_empty) ? {24'b0 ,FIFO[head]} : 0;
-    always @ (posedge CPU_CLOK)begin
+    reg has_read = 0;
+    always @ (negedge CPU_CLOK)begin
         if(daddr[31:20] == 12'h003 && ~FIFO_overflow && drd && ~FIFO_empty) begin
+            has_read <= 1;
+            keymemout <= {24'b0 ,FIFO[head]};
+        end
+        else keymemout <= 0;
+        if(has_read)begin
             head <= head+1;
+            has_read <= 0;
         end
     end
     reg [31:0]cursor = 0, offline = 0;
@@ -132,12 +143,13 @@ module mainDesign(
         if(write_cursor) cursor <= ddatain;
         else if(write_offline ) offline <= ddatain;
     end
+    
 
     // run_time
-    wire CLK_1HZ;
-    clkgen #(1) CLK_3(CLK100MHZ, 1'b0, 1'b1, CLK_1HZ);
+    wire CLK_1000HZ;
+    clkgen #(1000) CLK_3(CLK100MHZ, 1'b0, 1'b1, CLK_1000HZ);
     reg [31:0]run_time = 0;
-    always @ (posedge CLK_1HZ)begin
+    always @ (posedge CLK_1000HZ)begin
         run_time <= run_time + 1;
     end
         
@@ -148,6 +160,10 @@ module mainDesign(
             if(daddr[1:0] == 0) cpudbgdata[15:0] <= ddatain[15:0];
             else if(daddr[1:0] == 1) cpudbgdata[31:16] <= ddatain[31:16];
             else if(daddr[1:0] == 2) cpudbgdata <= ddatain;
+        end
+        else begin
+        // debug keyboard
+            cpudbgdata <= {24'b0, keymemout};
         end
     end
     

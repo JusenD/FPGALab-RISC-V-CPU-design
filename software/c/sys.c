@@ -21,7 +21,7 @@ void set_command(){
 
 void vga_init(){
     vga_line = 0;
-    vga_ch =0;
+    vga_ch = 0;
     *offline = 0;
     *curosr = 0;
     color_data = WHITE;
@@ -31,7 +31,7 @@ void vga_init(){
     }
     for(int i=0;i<VGA_MAXLINE;i++)
         for(int j=0;j<VGA_MAXCOL;j++)
-            vga_start[ (i<<7)+j ] =0;
+            vga_start[ (i<<7)+j ] = 0;
 }
 
 void putch(char ch) {
@@ -89,19 +89,28 @@ void putstr_const(const char *str){
       putch(str[i]);
 }
 
-void putint(int num){
-    if(num < 0){
-      num = -num;
-      putch('-');
+void putint(int num) {
+    if(num == 0)
+    {
+      putch('0');
+      return;
     }
-    int digits = 1, buffer = num;
-    while(buffer >= 10){
-      digits*= 10;
-      buffer /= 10;
+    if (num < 0) {
+        num = -num;
+        putch('-');
     }
-    while(digits > 0){
-      putch(num / digits + '0');
-      num = num % digits;
-      digits /= 10;
+    int tmp[20];
+    int i = 0;
+    while (num > 0)
+    {
+        tmp[i] = num % 10;
+        i++;
+        num /= 10;
+    }
+    i--;
+    while (i >= 0)
+    {
+        putch(tmp[i] + '0');
+        i--;
     }
 }
