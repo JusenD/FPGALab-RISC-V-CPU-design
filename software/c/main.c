@@ -1,13 +1,12 @@
 #include "sys.h"
 #include "string.h"
 
-#define KEY 0x00300000;
-
 char hello[]="Hello World!\n";
 char error[]="Instrction Error!\n";
 char unknown[]="Unknown Command\n";
 extern void compute(char* args[]);
 extern void welcome();
+extern void trick();
 int main();
 
 //setup the entry point
@@ -87,6 +86,8 @@ void display(char* args[])
     *LED = num;
 }
 
+
+
 void execute(char* command) 
 {
     // split args
@@ -118,6 +119,8 @@ void execute(char* command)
         display(args);
     else if(strcmp(function, "compute") == 0)
         compute(args);
+    else if (strcmp(function, "trick") == 0)
+        trick();
     else 
     {
         putch('\n');
@@ -129,14 +132,13 @@ int main()
 {
     welcome();
     vga_init();
-    char* key = (char*)KEY;
     char command[100];
     int i = 0;
     putstr_const(">>");
     set_command();
     while (1)
     {
-        char key_now = *key;
+        char key_now = getchar();
         if(key_now != 0)
         {
             putch(key_now);

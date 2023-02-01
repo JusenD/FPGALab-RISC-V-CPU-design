@@ -34,10 +34,17 @@ void vga_init(){
             vga_start[ (i<<7)+j ] = 0;
 }
 
+char getchar()
+{
+    char* key = (char*)KEY;
+    char key_now = *key;
+    while(key_now == 0) key_now = *key;
+    return key_now;
+}
+
 void putch(char ch) {
   if(ch==8) //backspace
   {
-      //TODO
       if(command_line[vga_line] && vga_ch <= 2) return;
       if(vga_ch > 0) {
         vga_ch--;
@@ -70,7 +77,6 @@ void putch(char ch) {
   *curosr = (vga_line<<7) + vga_ch;
   if(vga_ch>=VGA_MAXCOL)
   {
-     //TODO
      vga_ch = 0;
      vga_line++;
      *curosr = (vga_line<<7) + vga_ch;

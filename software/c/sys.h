@@ -16,12 +16,13 @@
 #define CHOOSE_LOW   0
 #define CHOOSE_HIGH  1
 #define CHOOSE_ALL   2
+#define KEY 0x00300000;
 
 void change_color(char color);
+char getchar();
 void putstr(char* str);
 void putstr_const(const char *str);
 void putch(char ch);
 void putint(int num);
 void set_command();
-
 void vga_init(void);

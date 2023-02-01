@@ -51,8 +51,6 @@ module mainDesign(
         
     
     //data memory	
-//    assign datawe = dwe;
-//    assign ddata = ddataout;
     assign datawe = daddr[31:20] == 12'h001 & dwe;
     assign ddata = (daddr[31:20] == 12'h001) ? ddataout :
                     ((daddr[31:20] == 12'h003) ? keymemout : 

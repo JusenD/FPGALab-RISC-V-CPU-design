@@ -48,7 +48,7 @@ void welcome()
 			int len = strlen(s);
 			for (int index = 0, v = location[j];index < len; index++, v--)
 			{
-				if (v >= 0 && v < 70)
+				if (v >= 0 && v < 30)
 				{
                     vga_start[(v << 7)+column] = s[index];
 				}

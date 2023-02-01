@@ -33,19 +33,11 @@ module pipeline_rv32is(
     
     
     assign imemclk = clock;
-/*    IF level0(
-        input clk, alu_result, pre_fail, imemdataout, reset
-        output instr, imemaddr
-        );*/
     IF level0(.clk(clock), .nextPC(EX_nextPC), .pre_fail(pre_fail), .bubble(bubble), .former_PC(EX_PC),
               .imemdataout(imemdataout), .reset(reset), .instr(instr), .imemaddr(imemaddr), .IF_PC(IF_PC), .IF_pre_PC(IF_pre_PC));
     
 //////// ID instruction decode /////////
     
-/*    ID level1(
-        input clk, instr, rega, regb, reset
-        output imm, rs1, rs2, rd, control, busA, busB
-        );*/
     wire [18:0]ID_control;
     wire [4:0]ID_rs1, ID_rs2, ID_rd;
     wire [31:0]ID_busA, ID_busB, ID_imm, ID_PC, ID_pre_PC;
@@ -60,10 +52,6 @@ module pipeline_rv32is(
     wire [4:0]EX_rd;
     wire [18:0] EX_control;
     wire EX_valid;
-/*    EX level2(
-        input clk, busA, busB, control, reset
-        output result, nextPC, control
-        );*/
     EX level2(.clk(clock), .ID_busA(ID_busA), .ID_busB(ID_busB), .ID_control(ID_control), .reset(reset), .ID_rd(ID_rd), .ID_imm(ID_imm), .ID_PC(ID_PC), .ID_valid(ID_valid), .bubble(bubble), .ID_pre_PC(ID_pre_PC),
               .Result(EX_ALU_result), .EX_Result(EX_Result), .EX_PC(EX_PC), .EX_nextPC(EX_nextPC), .EX_control(EX_control), .EX_busB(EX_busB), .EX_rd(EX_rd), .pre_fail(pre_fail), .EX_valid(EX_valid));
     
@@ -79,22 +67,6 @@ module pipeline_rv32is(
     assign dmemrdclk = ~clock;
     assign dmemwrclk = clock;
     assign MemtoReg = EX_control[`MemtoReg];
-/*    MEM level3(
-        input clk, result, control, reset, dmemdataout
-        output busW, control, dmemaddr, dmemdatain, dmemrdclk, dmemwrclk, dmemop, dmemwe, MemtoReg,
-        );
-        module MEM(
-    input clk,
-    input [31:0]EX_Result,
-    input [31:0]EX_busB,
-    input [18:0]EX_control,
-    input [31:0]dmemdataout,
-    input reset,
-    output [31:0]MEM_Result,
-    output [31:0]MEM_busB,
-    output [31:0]MEM_busW,
-    output [18:0]MEM_control
-    );*/
     MEM level3(.clk(clock), .EX_Result(EX_Result), .EX_busB(EX_busB), .EX_control(EX_control), .dmemdataout(dmemdataout), .reset(reset), .EX_rd(EX_rd), .EX_valid(EX_valid),
                .MEM_Result(MEM_Result), .MEM_busB(MEM_busB), .MEM_busW(MEM_busW), .MEM_control(MEM_control), .MEM_rd(MEM_rd), .MEM_valid(MEM_valid), .MEM_temp(MEM_temp));
     
@@ -103,18 +75,6 @@ module pipeline_rv32is(
     wire [4:0]WB_rd;
     wire [18:0]WB_control;
     wire WB_valid;
-/*    WB level4(
-        input clk, busW, rd, control, reset
-        output rd, writedata
-        );
-    input clk,
-    input [31:0]MEM_busW,
-    input [4:0]MEM_rd,
-    input [18:0]MEM_control,
-    input reset,
-    output [4:0]WB_rd,
-    output [31:0]WB_regwritedata,
-    output [18:0]WB_control*/
     WB level4(.clk(clock), .MEM_busW(MEM_busW), .MEM_rd(MEM_rd), .MEM_control(MEM_control), .reset(reset), .MEM_valid(MEM_valid), .WB_valid(WB_valid),
               .WB_rd(WB_rd), .WB_regwritedata(WB_regwritedata), .WB_control(WB_control));
     

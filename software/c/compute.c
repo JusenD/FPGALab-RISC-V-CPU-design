@@ -114,3 +114,27 @@ void compute(char* args[])
     }
     putint(n_s.numbers[0]);
 }
+
+void trick()
+{
+    putstr("Just enter a charactor\n");
+    char key = getchar();
+	putstr("  ");
+	for(int i = 0; i < 3; i++) putch(key);
+	putstr("    ");
+	for(int i = 0; i < 3; i++) putch(key);
+	putch('\n'); putch(' ');
+	for(int i = 0; i < 5; i++) putch(key);
+	putch(' '); putch(' ');
+	for(int i = 0; i < 5; i++) putch(key);
+	putch('\n');
+	for(int i = 0; i < 14; i++) putch(key);
+	putch('\n');
+	for(int i = 0; i < 14; i++) putch(key);
+	putch('\n'); putch(' ');
+	for(int i = 0; i < 12; i++) putch(key);
+	putch('\n'); putstr("    ");
+	for(int i = 0; i < 6; i++) putch(key);
+	putch('\n'); putstr("      ");
+	putch(key); putch(key); putch('\n');
+}
